@@ -6,11 +6,13 @@ function(target_sources_public target)
   # Must be using CMake 3.12 or earlier, so simulate the new behavior
   unset(_srcList)
   foreach(src ${ARGN})
-    list(APPEND _srcList "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/${src}>")
+    list(APPEND _srcList "$<BUILD_INTERFACE:include/${src}>")
     list(APPEND _srcList "$<INSTALL_INTERFACE:include/${src}>")
   endforeach()
   target_sources(${target} PUBLIC ${_srcList})
 endfunction()
+
+add_subdirectory(extern)
 
 add_library(core "")
 add_library(WorldBuilderCore::Core ALIAS core)
