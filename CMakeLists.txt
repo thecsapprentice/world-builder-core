@@ -32,3 +32,23 @@ install(EXPORT core-targets
   DESTINATION
     ${CMAKE_INSTALL_LIBDIR}/cmake/WorldBuilderCore
     )
+
+
+add_library(common "")
+add_library(WorldBuilderCore::Common ALIAS common)
+add_subdirectory(components/common)
+
+install(TARGETS common
+    EXPORT common-targets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+  
+install(EXPORT common-targets
+  FILE
+    commonTargets.cmake
+  NAMESPACE
+    WorldBuilderCore::
+  DESTINATION
+    ${CMAKE_INSTALL_LIBDIR}/cmake/WorldBuilderCore
+    )
