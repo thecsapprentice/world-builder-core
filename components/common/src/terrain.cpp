@@ -9,6 +9,10 @@
 
 using namespace WorldBuilder::Common;
 
+Terrain::Terrain() :
+  radius( 6370 ), resolution( 6e4 )
+{}
+
 Terrain::Terrain(float raduis, int resolution) :
   radius( radius ), resolution(resolution)
 {
@@ -53,12 +57,12 @@ constexpr double GoldenRatioInv() {
 }
 
 constexpr float FibTheta( int i, int n ){
-  double throwaway=0;
-  return GTE_C_TWO_PI  * std::modf((double)i * GoldenRatioInv(), &throwaway);
+  double i_over_GRinv = (double)i * GoldenRatioInv();
+  return GTE_C_TWO_PI  * (i_over_GRinv - std::floor(i_over_GRinv));
 }
 
 constexpr float FibZetta( int i, int n ){
-  return 1.0 - (2.0*(double)(i) - 1.0)/(double)(n);
+  return 1.0 - (2.0*(double)(i) + 1.0)/(double)(n);
 }
 
 gte::Vector3<float> PointFromAngles( float theta, float zetta ) {

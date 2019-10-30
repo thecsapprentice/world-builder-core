@@ -52,3 +52,9 @@ install(EXPORT common-targets
   DESTINATION
     ${CMAKE_INSTALL_LIBDIR}/cmake/WorldBuilderCore
     )
+
+option(WORLDBUILDER_TESTS "Build WorldBuilder-Core tests" ON)
+if(WORLDBUILDER_TESTS)
+    enable_testing()
+    add_subdirectory(test)
+endif()

@@ -36,6 +36,7 @@ namespace WorldBuilder {
     
     class Terrain {
     public:
+      Terrain();
       Terrain(float radius, int resolution);
       ~Terrain();
 
